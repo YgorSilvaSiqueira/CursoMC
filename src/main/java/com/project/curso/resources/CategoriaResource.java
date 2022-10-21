@@ -1,6 +1,7 @@
 package com.project.curso.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.project.curso.Services.CategoriaService;
 import com.project.curso.domain.Categoria;
+import com.project.curso.dto.CategoriaDTO;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -58,6 +60,14 @@ public class CategoriaResource {
 		service.delete(id);
 
 		return ResponseEntity.noContent().build();
+	}
+
+	@GetMapping
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+
+		List<CategoriaDTO> list = service.findAll();
+
+		return ResponseEntity.ok().body(list);
 	}
 
 }
